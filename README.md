@@ -8,7 +8,7 @@ Projeto de conclusão de Curso - Parte JAVA
 Orientação a Objetos, Modelagem e Banco de Dados e Persistência.
 
 ---
-**Os alunos deverão ser cadastrados com os seguintes campos mínimos:
+**Os alunos deverão ser cadastrados com os seguintes campos mínimos:**
 
 1. Chave de relacionamento
 2. Nome
