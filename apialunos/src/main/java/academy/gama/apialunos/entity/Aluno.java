@@ -11,15 +11,13 @@ import javax.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-//import lombok.Builder;
-//import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-//@Data
-//@Builder
-//@AllArgsConstructor
-//@NoArgsConstructor
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Aluno {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
