@@ -1,8 +1,7 @@
-package academy.gama.apialunos.controller;
+package academy.gama.apialunos.enums;
 
 public enum StatusAprovacao {
-
 	APROVADO,
 	REPROVADO,
-	ADAPTACAO;
+	RECUPERACAO;
 }

@@ -1,6 +1,6 @@
 package academy.gama.apialunos.entity;
 
-import academy.gama.apialunos.controller.StatusAprovacao;
+import academy.gama.apialunos.enums.StatusAprovacao;
 
 public class Notas {
 	
