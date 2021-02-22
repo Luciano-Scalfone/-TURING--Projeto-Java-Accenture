@@ -1,6 +1,7 @@
 ### [TURING]-Projeto-Java-Accenture
 Projeto de conclusão de Curso - Parte JAVA
 
+---
 **Enunciado:** Os grupos deverão desenvolver um sistema que permita o Cadastro, Inclusão, Consulta e Exclusão de Alunos.
 
 ### Critérios de avaliação:
@@ -22,6 +23,7 @@ Orientação a Objetos, Modelagem e Banco de Dados e Persistência.
 10. Disciplina
 11. Conceito
 
+---
 ### Lógica de programação
 
 Realizar alguma funcionalidade que envolva regra de negócio com ênfase no cadastro de alunos como tratamento de campos obrigatórios, cálculo da média final, aprovação e reprovação.
