@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,10 +30,12 @@ public class Aluno {
 	@Column
 	private int cpf;
 
-//	@Column
-//	private Endereco endereco;
+	@OneToOne
+	private Endereco endereco;
 	
 	@Column
 	private int telefone;
-//	private List<Curso> cursos;
+	
+	@ManyToMany(mappedBy = "alunos")
+	private List<Curso> cursos;
 }
