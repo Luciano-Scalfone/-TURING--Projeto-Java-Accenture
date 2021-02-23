@@ -36,3 +36,7 @@ Criar APIs Rest documentada com Swagger utilizando o Spring Web para realizar to
 Deverão ser apresentados os recursos utilizados no desenvolvimento como Linguagens, Gerenciador de Banco de Dados, Tecnologias (Spring, Swing, CSS,  etc).
 
 Como iremos falar de Spring  e APIs, o uso do Swing (opcional) poderia ser um cliente da API utilizando Rest Controller ou OpenFeint.
+
+# ESTRUTURA DO FLUXO DE DADOS
+
+![Método getAll()](./img/getall.jpg)
