@@ -1,4 +1,4 @@
-package academy.gama.apialunos.dto.mapper;
+package academy.gama.apialunos.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

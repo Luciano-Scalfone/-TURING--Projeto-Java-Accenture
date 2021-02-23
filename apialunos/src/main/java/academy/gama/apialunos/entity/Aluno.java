@@ -38,4 +38,7 @@ public class Aluno {
 	
 	@ManyToMany(mappedBy = "alunos")
 	private List<Curso> cursos;
+	
+	@OneToOne
+	private Nota nota;
 }

@@ -1,4 +1,4 @@
-package academy.gama.apialunos.dto.mapper;
+package academy.gama.apialunos.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
@@ -11,8 +11,8 @@ public interface DisciplinaMapper {
 
 	DisciplinaMapper INSTANCE = Mappers.getMapper(DisciplinaMapper.class);
 	
-	Disciplina toDTO(DisciplinaDTO disciplinaDTO);
+	Disciplina toModel(DisciplinaDTO disciplinaDTO);
 	
-	DisciplinaDTO toModel(Disciplina disciplina);
+	DisciplinaDTO toDTO(Disciplina disciplina);
 	
 }
