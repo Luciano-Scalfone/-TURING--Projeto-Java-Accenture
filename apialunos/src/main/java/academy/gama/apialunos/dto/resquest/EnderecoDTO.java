@@ -23,13 +23,13 @@ public class EnderecoDTO {
 	private String UF;
 	
 	@NotEmpty
-	private int cep;
+	private String cep;
 	
 	@NotEmpty
 	private String rua;
 	
 	@NotEmpty
-	private int numero;
+	private String numero;
 	
 	@NotEmpty
 	private String complemento;

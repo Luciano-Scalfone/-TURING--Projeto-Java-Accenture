@@ -22,8 +22,8 @@ public class AlunoDTO {
 	private String nome;
 	@NotEmpty
 	@Size(min = 11, max = 11)
-	private int cpf;
-	private int telefone;
+	private String cpf;
+	private String telefone;
 	
 	@Valid
 	private EnderecoDTO enderecoDTO;

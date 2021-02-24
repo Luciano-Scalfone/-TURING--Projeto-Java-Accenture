@@ -21,18 +21,18 @@ public class NotaDTO {
 	private Long id;
 	
 	@Size(max = 2)
-	private float nota_um;
+	private String nota_um;
 	
 	@Size(max = 2)
-	private float nota_dois;
+	private String nota_dois;
 	
 	@Size(max = 2)
-	private float nota_apresentacao;
+	private String nota_apresentacao;
 	
 	@Size(max = 2)
-	private float nota_trabalho;
+	private String nota_trabalho;
 	
-	private float media_conceito;
+	private String media_conceito;
 
 	@Enumerated(EnumType.STRING)
 	private StatusAprovacao statusAprovacao;
