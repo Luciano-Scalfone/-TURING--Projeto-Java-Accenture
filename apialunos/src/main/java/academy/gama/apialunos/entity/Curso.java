@@ -31,10 +31,9 @@ public class Curso {
 	private String nome;
 	
 	@ManyToMany
-	@JoinTable(name = "curso_aluno", 
+	@JoinTable(name = "aluno_curso", 
 		joinColumns = @JoinColumn(name="curso_id"),
 		inverseJoinColumns = @JoinColumn(name="aluno_id")
-
 	)
 	private List<Aluno> alunos;
 	

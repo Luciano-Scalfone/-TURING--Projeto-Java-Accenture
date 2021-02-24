@@ -27,7 +27,7 @@ public class Aluno {
 	@Column
 	private String nome;
 	
-	@Column
+	@Column(unique = true)
 	private int cpf;
 
 	@OneToOne
