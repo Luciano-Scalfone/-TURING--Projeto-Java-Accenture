@@ -28,7 +28,7 @@ public class Aluno {
 	private String nome;
 	
 	@Column(nullable = false, unique = true)
-	private int cpf;
+	private Long cpf;
 	
 	@Column(unique = true)
 	private int telefone;

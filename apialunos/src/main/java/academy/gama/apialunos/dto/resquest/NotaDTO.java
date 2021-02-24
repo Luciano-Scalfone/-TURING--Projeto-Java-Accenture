@@ -39,9 +39,9 @@ public class NotaDTO {
 
 	@Valid
 	@NotEmpty
-	private AlunoDTO alunoDTO;
+	private AlunoDTO aluno;
 
 	@Valid
 	@NotEmpty
-	private DisciplinaDTO disciplinaDTO;
+	private DisciplinaDTO disciplina;
 }

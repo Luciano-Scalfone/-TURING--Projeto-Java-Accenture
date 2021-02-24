@@ -25,7 +25,7 @@ public class Endereco {
 	private String cidade;
 	
 	@Column(nullable = false)
-	private String UF;
+	private String uf;
 	
 	@Column(nullable = false)
 	private int cep;

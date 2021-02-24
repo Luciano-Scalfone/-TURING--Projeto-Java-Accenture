@@ -20,7 +20,7 @@ public class EnderecoDTO {
 	private String cidade;
 	
 	@NotEmpty
-	private String UF;
+	private String uf;
 	
 	@NotEmpty
 	private String cep;
@@ -35,5 +35,5 @@ public class EnderecoDTO {
 	private String complemento;
 	
 	@Valid
-	private AlunoDTO alunoDTO;
+	private AlunoDTO aluno;
 }

@@ -21,16 +21,15 @@ public class AlunoDTO {
 	@NotEmpty
 	private String nome;
 	@NotEmpty
-	@Size(min = 11, max = 11)
 	private String cpf;
 	private String telefone;
 	
 	@Valid
-	private EnderecoDTO enderecoDTO;
+	private EnderecoDTO endereco;
 
 	@Valid
-	private NotaDTO notaDTO;
+	private NotaDTO nota;
 
 	@Valid
-	private List<CursoDTO> cursosDTO;
+	private List<CursoDTO> cursos;
 }

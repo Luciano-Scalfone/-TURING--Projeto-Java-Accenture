@@ -24,8 +24,8 @@ public class CursoDTO {
 	private String nome;
 	
 	@Valid
-	private List<AlunoDTO> alunosDTO;
+	private List<AlunoDTO> alunos;
 	
 	@Valid
-	private List<DisciplinaDTO> disciplinasDTO;
+	private List<DisciplinaDTO> disciplinas;
 }

@@ -20,5 +20,5 @@ public class DisciplinaDTO {
 	private String nome;
 	
 	@Valid
-	private CursoDTO cursoDTO;
+	private CursoDTO curso;
 }
