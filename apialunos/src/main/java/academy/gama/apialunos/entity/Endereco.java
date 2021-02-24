@@ -21,22 +21,22 @@ public class Endereco {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column
+	@Column(nullable = false)
 	private String cidade;
 	
-	@Column
+	@Column(nullable = false)
 	private String UF;
 	
-	@Column
+	@Column(nullable = false)
 	private int cep;
 	
-	@Column
+	@Column(nullable = false)
 	private String rua;
 	
-	@Column
+	@Column(nullable = false)
 	private int numero;
 	
-	@Column
+	@Column(nullable = true)
 	private String complemento;
 	
 	@OneToOne

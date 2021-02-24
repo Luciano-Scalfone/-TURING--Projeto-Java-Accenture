@@ -24,21 +24,22 @@ public class Aluno {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column
+	@Column(nullable = false)
 	private String nome;
 	
-	@Column(unique = true)
+	@Column(nullable = false, unique = true)
 	private int cpf;
+	
+	@Column(unique = true)
+	private int telefone;
 
 	@OneToOne
 	private Endereco endereco;
 	
-	@Column
-	private int telefone;
+	@OneToOne
+	private Nota nota;
 	
 	@ManyToMany(mappedBy = "alunos")
 	private List<Curso> cursos;
 	
-	@OneToOne
-	private Nota nota;
 }

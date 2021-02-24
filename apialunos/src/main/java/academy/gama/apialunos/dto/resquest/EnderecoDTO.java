@@ -1,5 +1,8 @@
 package academy.gama.apialunos.dto.resquest;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,4 +15,25 @@ import lombok.NoArgsConstructor;
 public class EnderecoDTO {
 
 	private Long id;
+	
+	@NotEmpty
+	private String cidade;
+	
+	@NotEmpty
+	private String UF;
+	
+	@NotEmpty
+	private int cep;
+	
+	@NotEmpty
+	private String rua;
+	
+	@NotEmpty
+	private int numero;
+	
+	@NotEmpty
+	private String complemento;
+	
+	@Valid
+	private AlunoDTO alunoDTO;
 }
