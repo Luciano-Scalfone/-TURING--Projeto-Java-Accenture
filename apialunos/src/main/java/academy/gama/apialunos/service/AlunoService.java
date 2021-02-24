@@ -22,24 +22,24 @@ public class AlunoService {
 	
 	private final AlunoMapper alunoMapper = AlunoMapper.INSTANCE;
 	
-	public MessageResponseDTO create(AlunoDTO alunoDTO) {
-		Aluno alunoToSave = alunoMapper.toModel(alunoDTO);
-		Aluno savedAluno = alunoRepository.save(alunoToSave);
-		return createMessageResponse(savedAluno.getId(), "Aluno created with ID ");
+	public MessageResponseDTO create(AlunoDTO itemDTO) {
+		Aluno itemToSave = alunoMapper.toModel(itemDTO);
+		Aluno savedItem = alunoRepository.save(itemToSave);
+		return createMessageResponse(savedItem.getId(), "Aluno created with ID ");
 	}
 	
 	public List<AlunoDTO> listAll() {
-		List<Aluno> allAlunos = alunoRepository.findAll();
-		return allAlunos.stream()
+		List<Aluno> todosItems = alunoRepository.findAll();
+		return todosItems.stream()
 				.map(alunoMapper::toDTO)
 				.collect(Collectors.toList())
 				;
 	}
 	
 	public AlunoDTO findById(Long id) throws ItemNotFoundException {
-		Aluno aluno = verifyIfExists(id);
+		Aluno itemEncontrado = verifyIfExists(id);
 		
-		return alunoMapper.toDTO(aluno);
+		return alunoMapper.toDTO(itemEncontrado);
 	}
 	
 	public void delete (Long id) throws ItemNotFoundException {
@@ -47,19 +47,19 @@ public class AlunoService {
 		alunoRepository.deleteById(id);
 	}
 	
-	public MessageResponseDTO updateById(Long id, AlunoDTO alunoDTO ) throws ItemNotFoundException {
+	public MessageResponseDTO updateById(Long id, AlunoDTO itemDTO ) throws ItemNotFoundException {
 		verifyIfExists(id);
 		
-		Aluno alunoToUpdate = alunoMapper.toModel(alunoDTO);
+		Aluno itemToUpdate = alunoMapper.toModel(itemDTO);
 		
-		Aluno updatedAluno = alunoRepository.save(alunoToUpdate);
+		Aluno updatedItem = alunoRepository.save(itemToUpdate);
 		
-		return createMessageResponse(updatedAluno.getId(), "Updated aluno com ID ");
+		return createMessageResponse(updatedItem.getId(), "Updated aluno com ID ");
 	}
 	
 	private Aluno verifyIfExists(Long id) throws ItemNotFoundException {
 		return alunoRepository.findById(id)
-				.orElseThrow(() -> new ItemNotFoundException(id, "pet"));
+				.orElseThrow(() -> new ItemNotFoundException(id, "aluno"));
 	}
 	
 	private MessageResponseDTO createMessageResponse(Long id, String message) {

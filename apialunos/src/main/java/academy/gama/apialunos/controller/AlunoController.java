@@ -31,8 +31,8 @@ public class AlunoController {
 
 	@PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-	public MessageResponseDTO create(@RequestBody @Valid AlunoDTO alunoDTO) {
-		return alunoService.create(alunoDTO);
+	public MessageResponseDTO create(@RequestBody @Valid AlunoDTO itemDTO) {
+		return alunoService.create(itemDTO);
 	}
 
 	@GetMapping
@@ -52,8 +52,8 @@ public class AlunoController {
 	}
 	
 	@PutMapping("/{id}")
-	public MessageResponseDTO updateById(@PathVariable Long id, @RequestBody @Valid AlunoDTO alunoDTO) throws ItemNotFoundException {
-		return alunoService.updateById(id, alunoDTO);
+	public MessageResponseDTO updateById(@PathVariable Long id, @RequestBody @Valid AlunoDTO itemDTO) throws ItemNotFoundException {
+		return alunoService.updateById(id, itemDTO);
 	}
 
 }
