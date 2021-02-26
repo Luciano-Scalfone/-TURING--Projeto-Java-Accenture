@@ -52,8 +52,23 @@ public class Nota {
 		return Math.round(media_conceito);
 	}
 
-	public void setMedia_conceito(float media_conceito) {
+	private void setMedia_conceito() {
 		this.media_conceito = (nota_um + nota_dois + nota_apresentacao + nota_trabalho) / 4;
+	}
+	
+	private void setStatusAprovacao() {
+		if (this.media_conceito >= 7) {
+			statusAprovacao = StatusAprovacao.APROVADO;
+		} else if (this.media_conceito < 4) {
+			statusAprovacao = StatusAprovacao.REPROVADO;
+		} else {
+			statusAprovacao = StatusAprovacao.RECUPERACAO;
+		}
+	}
+	
+	public void resolverNotasEConceito() {
+		setMedia_conceito();
+		setStatusAprovacao();
 	}
 	
 }

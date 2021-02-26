@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import academy.gama.apialunos.dto.response.MessageResponseDTO;
 import academy.gama.apialunos.dto.resquest.AlunoDTO;
+import academy.gama.apialunos.dto.resquest.NotaDTO;
+import academy.gama.apialunos.exception.FiledNotValidException;
 import academy.gama.apialunos.exception.ItemNotFoundException;
 import academy.gama.apialunos.service.AlunoService;
 import lombok.AllArgsConstructor;
@@ -52,8 +54,25 @@ public class AlunoController {
 	}
 	
 	@PutMapping("/{id}")
-	public MessageResponseDTO updateById(@PathVariable Long id, @RequestBody @Valid AlunoDTO itemDTO) throws ItemNotFoundException {
+	public MessageResponseDTO updateById(@PathVariable Long id, @RequestBody @Valid AlunoDTO itemDTO) throws ItemNotFoundException, FiledNotValidException {
 		return alunoService.updateById(id, itemDTO);
 	}
+		
+	// RELAÇÕES:
+	
+	@GetMapping("/{id}/notas")
+	public List<NotaDTO> getNotasById(@PathVariable Long id) throws ItemNotFoundException {
+		return alunoService.getNotasById(id);
+	}
+//	
+//	@PutMapping("/{id}/notas/{nota}")
+//	public MessageResponseDTO updateNotaById(@PathVariable Long id, @PathVariable Long nota, @RequestBody @Valid NotaDTO notaDTO) throws ItemNotFoundException, FiledNotValidException {
+//		return alunoService.updateNotaById(id, notaDTO);
+//	}
+//	
+//	@PutMapping("/{id}/notas?{nota}")
+//	public MessageResponseDTO updateNotaById2(@PathVariable Long id, @RequestBody @Valid AlunoDTO itemDTO) throws ItemNotFoundException, FiledNotValidException {
+//		return alunoService.updateNotaById2(id, itemDTO);
+//	}
 
 }

@@ -24,6 +24,7 @@ public class NotaService {
 	
 	public MessageResponseDTO create(NotaDTO itemDTO) {
 		Nota itemToSave = notaMapper.toModel(itemDTO);
+		itemToSave.resolverNotasEConceito();;
 		Nota savedItem = notaRepository.save(itemToSave);
 		return createMessageResponse(savedItem.getId(), "Nota created with ID ");
 	}
