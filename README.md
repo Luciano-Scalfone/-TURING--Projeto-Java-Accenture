@@ -37,6 +37,95 @@ Deverão ser apresentados os recursos utilizados no desenvolvimento como Linguag
 
 Como iremos falar de Spring  e APIs, o uso do Swing (opcional) poderia ser um cliente da API utilizando Rest Controller ou OpenFeint.
 
+# CAMADAS
+
+## Controller
+
+> Camada de contato da aplicação Back-End para com algum cliente.
+
+* Receber Requisições.
+* Enviar Respostas. 
+* Definidas as API's da aplicação.
+
+&nbsp;
+
+## Service
+
+> Camada lógica que faz interação para atingir o objetivo da requisição (seja pegar uma lista de dados ou algum dado em específico, como criar, atualizar e/ou deletar)
+
+* Lógica para atingir o objetivo;
+* Conecções com todas as demais camadas da aplicação, inclusive uma service conversar com outra service, de acordo com a necessidade lógica.
+* 
+
+&nbsp;
+
+## Repository
+
+> 
+
+* 
+
+&nbsp;
+
+## Mapper
+
+> 
+
+* 
+
+&nbsp;
+
+## Entity
+
+> 
+
+* 
+
+&nbsp;
+
+## Dto Request (Entity)
+
+> 
+
+* 
+
+&nbsp;
+
+## Dto Response
+
+> 
+
+* 
+
+&nbsp;
+
+## Enums
+
+> 
+
+* 
+
+&nbsp;
+
+## Exception
+
+> 
+
+* 
+
+&nbsp;
+
+## Banco de Dados
+
+
+&nbsp;
+
 # ESTRUTURA DO FLUXO DE DADOS
 
-![Método getAll()](./img/getall.jpg)
+## Fluxo da Informação no método Update.
+
+Aqui vemos que o fluxo de dados passa por todas as camadas de nossa aplicação.
+
+![Fluxo de dados - Método getAll()](./img/updateById.jpg)
+
+![Modelo Lógico do Banco de Dados](./img/Normalizacao_tabela.png)

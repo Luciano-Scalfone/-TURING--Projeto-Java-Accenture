@@ -10,13 +10,10 @@ import academy.gama.apialunos.dto.response.MessageResponseDTO;
 import academy.gama.apialunos.dto.resquest.AlunoDTO;
 import academy.gama.apialunos.dto.resquest.NotaDTO;
 import academy.gama.apialunos.entity.Aluno;
-import academy.gama.apialunos.entity.Nota;
 import academy.gama.apialunos.exception.FiledNotValidException;
 import academy.gama.apialunos.exception.ItemNotFoundException;
 import academy.gama.apialunos.mapper.AlunoMapper;
-import academy.gama.apialunos.mapper.NotaMapper;
 import academy.gama.apialunos.repository.AlunoRepository;
-import academy.gama.apialunos.repository.NotaRepository;
 import lombok.AllArgsConstructor;
 
 @Service
@@ -36,22 +33,30 @@ public class AlunoService {
 		return resposta;
 	}
 
-	public List<AlunoDTO> listAll() {
-		List<Aluno> todosItems = alunoRepository.findAll();
-		return todosItems.stream()
+	public List<AlunoDTO> listAll(String nome) {
+		
+		List<Aluno> listaItems;
+		
+		if (nome == null)
+			listaItems = alunoRepository.findAll();
+		else {
+			listaItems = alunoRepository.findByNome(nome);
+		}
+		
+		return listaItems.stream()
 				.map(alunoMapper::toDTO)
 				.collect(Collectors.toList())
 				;
 	}
 
 	public AlunoDTO findById(Long id) throws ItemNotFoundException {
-		Aluno itemEncontrado = verifyIfExists(id);
+		Aluno itemEncontrado = verifyIfAlunoExists(id);
 
 		return alunoMapper.toDTO(itemEncontrado);
 	}
 
 	public void delete (Long id) throws ItemNotFoundException {
-		verifyIfExists(id);
+		verifyIfAlunoExists(id);
 		alunoRepository.deleteById(id);
 	}
 
@@ -59,8 +64,8 @@ public class AlunoService {
 
 		MessageResponseDTO resposta = null;
 
-		verifyIfExists(id);
-		Aluno itemToUpdate = backToModel(itemDTO);
+		verifyIfAlunoExists(id);
+		Aluno itemToUpdate = alunoBackToModel(itemDTO);
 		
 		try {
 			Aluno updatedItem = alunoRepository.save(itemToUpdate);
@@ -73,28 +78,30 @@ public class AlunoService {
 		return resposta;
 	}
 	
-	private Aluno backToModel(AlunoDTO itemDTO) throws FiledNotValidException {
+	private Aluno alunoBackToModel(AlunoDTO itemDTO) throws FiledNotValidException {
 		return alunoMapper.toModel(itemDTO);
 	}
 
-	private Aluno verifyIfExists(Long id) throws ItemNotFoundException {
+	private Aluno verifyIfAlunoExists(Long id) throws ItemNotFoundException {
 		return alunoRepository.findById(id)
 				.orElseThrow(() -> new ItemNotFoundException(id, "aluno"));
 	}
 	
 	// RELAÇÕES	>> NOTAS
-	
-	private final NotaRepository notaRepository;
-
-	private final NotaMapper notaMapper = NotaMapper.INSTANCE;
+	private final NotaService notaService;
 		
-	public List<NotaDTO> getNotasById(Long id) throws ItemNotFoundException {
-		Aluno alunoEndontrado = verifyIfExists(id);
-		List<Nota> todosItems = notaRepository.getNotasByAlunoId(alunoEndontrado);
-		return todosItems.stream()
-				.map(notaMapper::toDTO)
-				.collect(Collectors.toList())
-				;
+	public List<NotaDTO> listNotasByAlunoId(Long id) throws ItemNotFoundException {
+		Aluno alunoEndontrado = verifyIfAlunoExists(id);
+		return notaService.listNotasByAlunoId(alunoEndontrado);
+	}
+	public MessageResponseDTO createNotaByAlunoId(Long id, NotaDTO itemDTO ) throws ItemNotFoundException, FiledNotValidException {
+		Aluno aluno = verifyIfAlunoExists(id);
+		return notaService.createNotaByAlunoId(aluno, itemDTO);
+	}
+	
+	public MessageResponseDTO updateNotaByAlunoId(Long id, Long notaId, NotaDTO itemDTO ) throws ItemNotFoundException, FiledNotValidException {
+		Aluno aluno = verifyIfAlunoExists(id);
+		return notaService.updateNotaByAlunoId(aluno, notaId, itemDTO);
 	}
 
 }

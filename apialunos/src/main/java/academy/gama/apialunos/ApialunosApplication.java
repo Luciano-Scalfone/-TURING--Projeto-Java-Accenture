@@ -9,3 +9,4 @@ public class ApialunosApplication {
 		 SpringApplication.run(ApialunosApplication.class, args);
 	}
 }
+
