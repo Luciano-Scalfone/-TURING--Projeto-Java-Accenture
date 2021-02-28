@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import academy.gama.apialunos.dto.response.MessageResponseDTO;
 import academy.gama.apialunos.dto.resquest.AlunoDTO;
+import academy.gama.apialunos.dto.resquest.NotaDTO;
 import academy.gama.apialunos.entity.Aluno;
+import academy.gama.apialunos.exception.FiledNotValidException;
 import academy.gama.apialunos.exception.ItemNotFoundException;
 import academy.gama.apialunos.mapper.AlunoMapper;
 import academy.gama.apialunos.repository.AlunoRepository;
@@ -19,54 +21,87 @@ import lombok.AllArgsConstructor;
 public class AlunoService {
 
 	private final AlunoRepository alunoRepository;
-	
+
 	private final AlunoMapper alunoMapper = AlunoMapper.INSTANCE;
-	
+
 	public MessageResponseDTO create(AlunoDTO itemDTO) {
+
 		Aluno itemToSave = alunoMapper.toModel(itemDTO);
 		Aluno savedItem = alunoRepository.save(itemToSave);
-		return createMessageResponse(savedItem.getId(), "Aluno created with ID ");
+		MessageResponseDTO resposta = new MessageResponseDTO("Aluno created with ID", savedItem.getId());
+
+		return resposta;
 	}
-	
-	public List<AlunoDTO> listAll() {
-		List<Aluno> todosItems = alunoRepository.findAll();
-		return todosItems.stream()
+
+	public List<AlunoDTO> listAll(String nome) {
+		
+		List<Aluno> listaItems;
+		
+		if (nome == null)
+			listaItems = alunoRepository.findAll();
+		else {
+			listaItems = alunoRepository.findByNome(nome);
+		}
+		
+		return listaItems.stream()
 				.map(alunoMapper::toDTO)
 				.collect(Collectors.toList())
 				;
 	}
-	
+
 	public AlunoDTO findById(Long id) throws ItemNotFoundException {
-		Aluno itemEncontrado = verifyIfExists(id);
-		
+		Aluno itemEncontrado = verifyIfAlunoExists(id);
+
 		return alunoMapper.toDTO(itemEncontrado);
 	}
-	
+
 	public void delete (Long id) throws ItemNotFoundException {
-		verifyIfExists(id);
+		verifyIfAlunoExists(id);
 		alunoRepository.deleteById(id);
 	}
-	
-	public MessageResponseDTO updateById(Long id, AlunoDTO itemDTO ) throws ItemNotFoundException {
-		verifyIfExists(id);
+
+	public MessageResponseDTO updateById(Long id, AlunoDTO itemDTO ) throws ItemNotFoundException, FiledNotValidException {
+
+		MessageResponseDTO resposta = null;
+
+		verifyIfAlunoExists(id);
+		Aluno itemToUpdate = alunoBackToModel(itemDTO);
 		
-		Aluno itemToUpdate = alunoMapper.toModel(itemDTO);
-		
-		Aluno updatedItem = alunoRepository.save(itemToUpdate);
-		
-		return createMessageResponse(updatedItem.getId(), "Updated aluno com ID ");
+		try {
+			Aluno updatedItem = alunoRepository.save(itemToUpdate);
+			resposta = new MessageResponseDTO("Updated aluno com ID", updatedItem.getId());
+
+		} catch (Exception e) {
+			
+			 throw new FiledNotValidException(e.getMessage());
+		}
+		return resposta;
 	}
 	
-	private Aluno verifyIfExists(Long id) throws ItemNotFoundException {
+	private Aluno alunoBackToModel(AlunoDTO itemDTO) throws FiledNotValidException {
+		return alunoMapper.toModel(itemDTO);
+	}
+
+	private Aluno verifyIfAlunoExists(Long id) throws ItemNotFoundException {
 		return alunoRepository.findById(id)
 				.orElseThrow(() -> new ItemNotFoundException(id, "aluno"));
 	}
 	
-	private MessageResponseDTO createMessageResponse(Long id, String message) {
-		return MessageResponseDTO
-				.builder()
-				.message(message + id)
-				.build();
+	// RELAÇÕES	>> NOTAS
+	private final NotaService notaService;
+		
+	public List<NotaDTO> listNotasByAlunoId(Long id) throws ItemNotFoundException {
+		Aluno alunoEndontrado = verifyIfAlunoExists(id);
+		return notaService.listNotasByAlunoId(alunoEndontrado);
+	}
+	public MessageResponseDTO createNotaByAlunoId(Long id, NotaDTO itemDTO ) throws ItemNotFoundException, FiledNotValidException {
+		Aluno aluno = verifyIfAlunoExists(id);
+		return notaService.createNotaByAlunoId(aluno, itemDTO);
 	}
 	
+	public MessageResponseDTO updateNotaByAlunoId(Long id, Long notaId, NotaDTO itemDTO ) throws ItemNotFoundException, FiledNotValidException {
+		Aluno aluno = verifyIfAlunoExists(id);
+		return notaService.updateNotaByAlunoId(aluno, notaId, itemDTO);
+	}
+
 }

@@ -10,6 +10,6 @@ import academy.gama.apialunos.entity.Aluno;
 public interface AlunoMapper {
 	AlunoMapper INSTANCE = Mappers.getMapper(AlunoMapper.class);
 
-	Aluno toModel(AlunoDTO alunoDTO);
-	AlunoDTO toDTO(Aluno aluno);
+	Aluno toModel(AlunoDTO alunoDTO); // request
+	AlunoDTO toDTO(Aluno aluno); // responder 
 }

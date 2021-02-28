@@ -13,11 +13,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import academy.gama.apialunos.dto.response.MessageResponseDTO;
 import academy.gama.apialunos.dto.resquest.AlunoDTO;
+import academy.gama.apialunos.dto.resquest.NotaDTO;
+import academy.gama.apialunos.exception.FiledNotValidException;
 import academy.gama.apialunos.exception.ItemNotFoundException;
 import academy.gama.apialunos.service.AlunoService;
 import lombok.AllArgsConstructor;
@@ -36,8 +39,9 @@ public class AlunoController {
 	}
 
 	@GetMapping
-	public List<AlunoDTO> getAll() {
-		return alunoService.listAll();
+	public List<AlunoDTO> getAll(@RequestParam(required = false) String nome) {
+		System.out.println("nome: " + nome);
+		return alunoService.listAll(nome);
 	}
 
 	@GetMapping("/{id}")
@@ -52,8 +56,25 @@ public class AlunoController {
 	}
 	
 	@PutMapping("/{id}")
-	public MessageResponseDTO updateById(@PathVariable Long id, @RequestBody @Valid AlunoDTO itemDTO) throws ItemNotFoundException {
+	public MessageResponseDTO updateById(@PathVariable Long id, @RequestBody @Valid AlunoDTO itemDTO) throws ItemNotFoundException, FiledNotValidException {
 		return alunoService.updateById(id, itemDTO);
+	}
+		
+	// RELAÇÕES COM NOTA
+	
+	@GetMapping("/{id}/notas")
+	public List<NotaDTO> getNotasById(@PathVariable Long id) throws ItemNotFoundException {
+		return alunoService.listNotasByAlunoId(id);
+	}
+	
+	@PostMapping("/{id}/notas")
+	public MessageResponseDTO createNota(@PathVariable Long id, @RequestBody @Valid NotaDTO notaDTO) throws ItemNotFoundException, FiledNotValidException {
+		return alunoService.createNotaByAlunoId(id, notaDTO);
+	}
+	
+	@PutMapping("/{id}/notas/{notaId}")
+	public MessageResponseDTO updateNotaById(@PathVariable Long id, @PathVariable Long notaId, @RequestBody @Valid NotaDTO notaDTO) throws ItemNotFoundException, FiledNotValidException {
+		return alunoService.updateNotaByAlunoId(id, notaId, notaDTO);
 	}
 
 }
