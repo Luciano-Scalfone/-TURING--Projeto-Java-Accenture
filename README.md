@@ -47,8 +47,8 @@ Como iremos falar de Spring  e APIs, o uso do Swing (opcional) poderia ser um cl
 # PROPOSTA DE SOLUÇÃO & AGRADECIMENTOS
 
 
-O cliente que poderá acessar pelo link: [FRONT-END](https://www.google.com).
-E a aplicação [BACK-END](https://www.google.com).
+O cliente que poderá acessar pelo link: [FRONT-END](https://github.com/grenoldi/turing-students).
+E a aplicação [BACK-END](https://github.com/Jeffrs123/TURING-Projeto-Java-Accenture).
 
 O grupo se dividiu em duas partes, o que ocasionou a separação da proporção de soluções, uma equipe para implementar o Back e a outra o Front.
 
