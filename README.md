@@ -56,8 +56,16 @@ Nossos Maiores aprendizados foram o de que quando um, ou no caso mais que um, me
 
 Então nosso muito obrigado pela oportunidade de aprendermos e crescermos mais.
 
+&nbsp;
+
+---
+
+&nbsp;
 
 
+# TRELLO
+
+[Link Trello do projeto](https://trello.com/b/eorXF95c/projeto-java)
 
 &nbsp;
 
